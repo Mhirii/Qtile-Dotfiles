@@ -25,7 +25,7 @@ keys = [
         ([mod, "shift"], "space", lazy.spawn(DMENU)),
         # utility
         ([mod], "v", lazy.spawn(CLIPBOARD)),
-        ([mod], "o", lazy.spawn(COLORPICKER)),
+        ([mod], "prior", lazy.spawn(COLORPICKER)),
         ([mod], "p", lazy.spawn(ROFIPOWER)),
         ([mod], "w", lazy.spawn("sh -c ~/Scripts/wallpaper.sh")),
         ([mod], "Escape", lazy.spawn("xkill")),
@@ -116,7 +116,11 @@ for i in groups:
             ),
             Key([mod], "Tab", lazy.screen.next_group()),
             Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
-            Key(["mod1"], "Tab", lazy.group.next_window(),),
+            Key(
+                ["mod1"],
+                "Tab",
+                lazy.group.next_window(),
+            ),
             Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
             Key([mod, "mod1"], i.name, lazy.window.togroup(i.name)),
             Key(
