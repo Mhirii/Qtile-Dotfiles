@@ -14,7 +14,7 @@ def init_screens():
                 background="000000",
                 border_color="#282738",
                 border_width=[0, 0, 0, 0],
-                margin=[0, 8, 0, 8],
+                margin=[4, 4, 0, 4],
             )
         ),
         Screen(

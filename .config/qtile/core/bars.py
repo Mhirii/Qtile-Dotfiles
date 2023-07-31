@@ -1,6 +1,7 @@
 from libqtile import widget, qtile
 from assets.themes import theme, icon, accent
 from core.apps import TERM_EMULATOR
+from dbus_next import *
 from libqtile.command import lazy
 
 bar_using_images = [
@@ -190,8 +191,8 @@ catppuccin_mocha = [
     seperator_pipe(theme["bg1"], theme["bg"]),
     widget.GroupBox(
         font="JetBrainsMono Nerd Font Bold",
-        fontsize=18,
-        borderwidth=3,
+        fontsize=16,
+        borderwidth=2,
         highlight_method="block",
         background=theme["bg1"],
         inactive=theme["bg2"],
@@ -206,7 +207,7 @@ catppuccin_mocha = [
         urgent_alert_method="block",
         urgent_border="#af5555",
         rounded=True,
-        hide_unused=False,
+        hide_unused=True,
         disable_drag=True,
     ),
     widget.Spacer(
@@ -214,32 +215,65 @@ catppuccin_mocha = [
         background=theme["bg1"],
     ),
     seperator_pipe(theme["bg"], theme["bg1"]),
-    widget.TextBox(
-        text=" 󰙀 ",
+    widget.WidgetBox(
         background=theme["bg"],
-        foreground=theme["1"],
+        close_button_location='left',
+        font='JetbrainsMono Nerd Font',
+        fontshadow=None,
         fontsize=14,
-    ),
-    widget.CurrentLayout(
-        background=theme["bg"],
         foreground=theme["1"],
-        fmt="{}",
-        font="JetBrainsMono Nerd Font Bold",
-        fontsize=14,
+        mouse_callbacks={},
+        #    
+        text_closed=' 󰙀  ',
+        text_open=' 󰙀 ',
+        widgets=[
+            widget.CurrentLayout(
+                background=theme["bg"],
+                foreground=theme["1"],
+                fmt="{}",
+                font="JetBrainsMono Nerd Font Bold",
+                fontsize=14,
+            ),
+            widget.Spacer(
+                    length=16,
+                    background=theme["bg"],
+            ),
+            widget.Wallpaper(
+                background=theme["bg"],
+                foreground=theme["1"],
+                font="JetBrainsMono Nerd Font Bold",
+                fontsize=14,
+                fmt='󰲍  {}',
+                directory='~/Pictures/Wallpapers/',
+                max_chars=40
+            ),
+        ]
     ),
     seperator_pipe(theme["bg1"], theme["bg"]),
+
     widget.Spacer(
         background=theme["bg1"],
     ),
+    widget.Mpris2(
+        background=theme["bg1"],
+        foreground=theme["text"],
+        font="JetBrainsMono Nerd Font Bold",
+        fontsize=14,
+        display_metadata=['xesam:artist', 'xesam:title',],
+        fmt='{}',
+        max_chars=40
+    ),
+    widget.Spacer(background=theme["bg1"],),
     seperator_pipe_reverse(theme["bg1"], theme["bg"]),
     widget.TextBox(
         text=" ",
         background=theme["bg"],
     ),
     widget.Systray(
-        padding = 4,
+        padding=4,
         background=theme["bg"],
         fontsize=2,
+        icon_size=16,
     ),
     widget.TextBox(
         text=" ",
